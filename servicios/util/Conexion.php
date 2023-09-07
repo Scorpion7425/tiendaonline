@@ -13,9 +13,14 @@ class Conexion {
 
     public $pdo;
 
+    //constructor de la clase Conexion
+
     public function __construct() {
+
+        //Este bloque permite capturar una excepcion no controlada
+
         try {
-            $this->pdo = new PDO("pgsql:host=" . SERVIDOR . " port=" . PUERTO . " dbname=" . BASE_DATOS, USUARIO, CONTRASENA);
+            $this->pdo = new mysqli("localhost", "root", "7425", "tdbsystem");
         } catch (PDOException $e) {
             error_log(utf8_encode($e));
             throw new Exception('No se pudo establecer la conexión con la base de datos', $e->getCode());
